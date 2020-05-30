@@ -14,10 +14,15 @@ import os
 import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.insert(0,BASE_DIR)
 sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
 
+sys.path.insert(0,os.path.join(BASE_DIR,'extra_apps'))
 # 重载AUTH_USER_MODEL
 AUTH_USER_MODEL = 'users.UserProfile'
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -43,13 +48,17 @@ INSTALLED_APPS = [
     'course',
     'organization',
     'operation',
+    'xadmin',
+    'crispy_forms',
+    'captcha',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -60,7 +69,7 @@ ROOT_URLCONF = 'bwonline.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,18 +127,46 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'),
+)
+
+
+
+EMAIL_HOST = "smtp.qq.com"  # SMTP服务器主机
+EMAIL_PORT = 25             # 端口
+EMAIL_HOST_USER = "2645627070@qq.com"       # 邮箱地址
+EMAIL_HOST_PASSWORD = "zlkznfeszeadeaeb"    # 密码
+EMAIL_USE_TLS= True
+EMAIL_FROM = "在线教育<2645627070@qq.com>"            # 邮箱地址
+# EMAILE_USE_TLS = True
+
+# # 发送邮件配置
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.qq.com'
+#
+# EMAIL_PORT = 25
+# #发送邮件的邮箱
+# EMAIL_HOST_USER = '2645627070@qq.com'
+# #在邮箱中设置的客户端授权密码
+# EMAIL_HOST_PASSWORD = 'orycpvssuarddjcc'
+# #收件人看到的发件人
+# EMAIL_FROM = '海马生鲜<2645627070@qq.com>'
+#
+# EMAILE_USE_TLS = True
