@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'bwonline.urls'
+ROOT_URLCONF = 'bwOnline.urls'
 
 TEMPLATES = [
     {
@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'bwOnline.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bwonline',        #数据库名字
+        'NAME': 'bwOnline',        #数据库名字
         'USER': 'root',          #账号
         'PASSWORD': '123456',      #密码
         'HOST': '127.0.0.1',    #IP
