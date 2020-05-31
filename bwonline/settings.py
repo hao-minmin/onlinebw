@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'captcha',
+    'pure_pagination',
 
 ]
 
@@ -77,6 +78,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 添加图片处理器，为了在课程列表中前面加上MEDIA_URL
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -170,3 +173,7 @@ EMAIL_FROM = "在线教育<2645627070@qq.com>"            # 邮箱地址
 # EMAIL_FROM = '海马生鲜<2645627070@qq.com>'
 #
 # EMAILE_USE_TLS = True
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')   #指定根目录
